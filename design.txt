@@ -1,0 +1,56 @@
+main loop:
+  board = init_board()
+  round loop :r <- round
+    action loop: p <- player
+      prompt_player_your_turn, present actions
+      input = get_input_from_player(p) #action is
+      if input is action: board = do_action(input)
+      if input is cancel: board = back a state
+      if input is colony ship: board = colony ship
+      if input is trade: board = do trdae
+    do combat loop:
+      board = do next combat
+    do upkeep:
+      send upkeep request to everyone
+      for each person, get upkeep and update board
+
+explore:
+  server: present options to explore to by coordinate
+  client: respond with coordinate
+  server: ask for orientation or unexpected message or invalid option
+  client: respond with orientaion
+  server: ask if influence or unexpected message
+  client: respond yes/no
+  server: respond done with explore
+
+influence:
+  server: present options to influence
+  client: choose option
+  server: done or unexpected message or invalid option
+
+research:
+  server: present options to research
+  client: choose option
+  server: done or unexpected message or invalid options
+
+upgrade:
+  server: present ships state and upgrades state {blueprints:[bp1, bp2 ...], upgradetilesoptions: [option1, option2]}
+  client: choose option
+  server: done or unexpected message or invalid options
+
+build:
+  server: presents blueprints and places to build
+  client: choose option
+
+move:
+  server: present list of ships to move
+  client: choose ship to move
+  server: present list of tiles ship can move to
+  client: choose hex to move to
+
+error messages:
+  invalid json
+  unexpected message (expected type)
+  invalid option (represent with options)
+
+
